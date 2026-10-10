@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+from bs4.element import Comment # Import Comment from bs4.element
 from typing import Optional
 
 class WebCleaner:
@@ -45,11 +46,3 @@ class WebCleaner:
         clean_text = ' '.join(text.split())
 
         return clean_text
-
-class Comment:
-    """Helper class for BeautifulSoup to identify comments."""
-    def __eq__(self, other):
-        return isinstance(other, Comment) or (hasattr(other, 'string') and other.string is not None and other.string.startswith('<!--') and other.string.endswith('-->'))
-
-    def __hash__(self):
-        return hash("Comment")
